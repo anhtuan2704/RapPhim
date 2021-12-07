@@ -19,7 +19,26 @@ namespace RapChieuPhim.Areas.Admin.Controllers
         {
             return View(db.RapPhims.ToList());
         }
+        [HttpPost]
+        public JsonResult GetJsonResult()
+        {
+            List<RapPhim> rapPhims = db.RapPhims.ToList();
+            var jsonRap = rapPhims.Select(P => new
+            {
+                MaP = P.Id,
+                TenRap = P.TenRapChieu,
+                Soluong = P.TongSoPhong,
+                ThanhPho = P.ThanhPho,
+                QuanHuyen = P.QuanHuyen,
+                TongSoPhong=P.TongSoPhong,
+                TX = P.PhuongXa,
+                KhungGio=P.KhungGio,
+                
 
+            }); ;
+            return Json(jsonRap, behavior: JsonRequestBehavior.AllowGet);
+        }
+        // GET: Admin/Phongs/Details/5
         // GET: Admin/RapPhims/Details/5
         public ActionResult Details(int? id)
         {
@@ -101,6 +120,8 @@ namespace RapChieuPhim.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            db.RapPhims.Remove(rapPhim);
+            db.SaveChanges();
             return View(rapPhim);
         }
 

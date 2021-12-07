@@ -120,14 +120,7 @@
                     <li class="nav-label first">Main Menu</li>
                     <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> -->
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon icon-single-04"></i><span class="nav-text">Thông Kế</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="~/Content/admin/index.html">Thông Kê</a></li>
-                        </ul>
-                    </li>
+                   
 
                     <li class="nav-label">Quản Lý hệ thống</li>
                     <li>
@@ -698,13 +691,14 @@
         };
     </script>
     <script type="text/javascript">
+        
         $(document).ready(function () {
             $('#datatables-rap').dataTable({
                 "processing": true,
                 "serverSide": false,
 
                 "ajax": {
-                    "url": '/Admin/RapChieuPhims/GetJsonResult',
+                    "url": '/Admin/RapPhims/GetJsonResult',
                     "type": 'POST',
                     "datatype": 'json',
                     "contentType": "application/json; charset=utf-8",
@@ -712,28 +706,33 @@
                 },
 
                 "columns": [{
-                    "data": "Id"
+                    "data": "MaP"
                 },
                 {
-                    "data": "TenRapChieu"
+                    "data": "TenRap"
                 },
                 {
                     "data": "ThanhPho"
-                },
-                {
-                    "data": "QuanHuyen"
-                },
+                    },
+                    {
+                        "data": "QuanHuyen"
+                    }, {
+                        "data": "TX"
+                    },
                 {
                     "data": "TongSoPhong"
-                },
+                    },
+                    {
+                        "data": "KhungGio"
+                    },
                 {
-                    "data": "Id",
+                    "data": "MaP",
                     render: function (data, type, row) {
-                        return "<a class='btn btn-primary'  href='/Admin/RapChieuPhims/Edit/" + data + "'  >Sửa</a> ";
+                        return "<a class='btn btn-primary'  href='/Admin/RapPhims/Edit/" + data + "'  >Sửa</a> ";
                     }
                 },
                 {
-                    "data": "Id",
+                    "data": "MaP",
                     render: function (data, type, row) {
                         return "<button class='btn btn-primary' type='button'  onclick='xoaRap(" + data + ")'>xóa</button>";
                     }
@@ -744,7 +743,7 @@
         function xoaRap(data) {
             if (confirm("Bạn muốn xóa rap chiếu phim này")) {
                 $.ajax({
-                    url: '/Admin/RapChieuPhims/Delete',
+                    url: '/Admin/RapPhims/Delete',
                     type: "GET",
                     data: {
                         id: data
@@ -752,7 +751,7 @@
                     success: function (response) {
                         if (response) {
                             alert("Bạn đã xóa thành công");
-                            $('#dataTables-rap').DataTable().ajax.reload();
+                            $('#datatables-rap').DataTable().ajax.reload();
                         } else {
                             alert("xảy ra quá trình xử lý");
                         }
