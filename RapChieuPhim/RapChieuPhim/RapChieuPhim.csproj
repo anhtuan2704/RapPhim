@@ -45,11 +45,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Api.CommonProtos, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Api.CommonProtos.2.4.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.18.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.18.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.13\lib\net45\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -59,8 +71,21 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -147,6 +172,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PhimsController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\VeController.cs" />
@@ -177,6 +203,8 @@
     <Compile Include="Models\LoaiPhim.cs" />
     <Compile Include="Models\NoiDung.cs" />
     <Compile Include="Models\Phim.cs" />
+    <Compile Include="MoMo\MoMoSecurity.cs" />
+    <Compile Include="MoMo\PaymentRequest.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\PhimViewModel.cs" />
     <Compile Include="Models\Phong.cs" />
@@ -3970,6 +3998,83 @@
     <Content Include="Content\Client\js\plugins.js" />
     <Content Include="Content\Client\js\plugins2.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Zalo\css\blue%402x.png" />
+    <Content Include="Content\Zalo\css\blue.css" />
+    <Content Include="Content\Zalo\css\blue.png" />
+    <Content Include="Content\Zalo\css\bootstrap.min.css" />
+    <Content Include="Content\Zalo\images\bank-abb.svg" />
+    <Content Include="Content\Zalo\images\bank-acb.svg" />
+    <Content Include="Content\Zalo\images\bank-anz.svg" />
+    <Content Include="Content\Zalo\images\bank-bab.svg" />
+    <Content Include="Content\Zalo\images\bank-bidv.svg" />
+    <Content Include="Content\Zalo\images\bank-bvb.svg" />
+    <Content Include="Content\Zalo\images\bank-dab.svg" />
+    <Content Include="Content\Zalo\images\bank-eib.svg" />
+    <Content Include="Content\Zalo\images\bank-gpb.svg" />
+    <Content Include="Content\Zalo\images\bank-hdb.svg" />
+    <Content Include="Content\Zalo\images\bank-klb.svg" />
+    <Content Include="Content\Zalo\images\bank-lpb.svg" />
+    <Content Include="Content\Zalo\images\bank-mb.svg" />
+    <Content Include="Content\Zalo\images\bank-msb.svg" />
+    <Content Include="Content\Zalo\images\bank-nab.svg" />
+    <Content Include="Content\Zalo\images\bank-navi.svg" />
+    <Content Include="Content\Zalo\images\bank-ncb.svg" />
+    <Content Include="Content\Zalo\images\bank-ocb.svg" />
+    <Content Include="Content\Zalo\images\bank-ojb.svg" />
+    <Content Include="Content\Zalo\images\bank-pbvn.svg" />
+    <Content Include="Content\Zalo\images\bank-pg.svg" />
+    <Content Include="Content\Zalo\images\bank-pvcb.svg" />
+    <Content Include="Content\Zalo\images\bank-scb.svg" />
+    <Content Include="Content\Zalo\images\bank-seab.svg" />
+    <Content Include="Content\Zalo\images\bank-sgb.svg" />
+    <Content Include="Content\Zalo\images\bank-sgcb.svg" />
+    <Content Include="Content\Zalo\images\bank-shb.svg" />
+    <Content Include="Content\Zalo\images\bank-tcb.svg" />
+    <Content Include="Content\Zalo\images\bank-tpb.svg" />
+    <Content Include="Content\Zalo\images\bank-vab.svg" />
+    <Content Include="Content\Zalo\images\bank-varb.svg" />
+    <Content Include="Content\Zalo\images\bank-vcb.svg" />
+    <Content Include="Content\Zalo\images\bank-vccb.svg" />
+    <Content Include="Content\Zalo\images\bank-vib.svg" />
+    <Content Include="Content\Zalo\images\bank-vpb.svg" />
+    <Content Include="Content\Zalo\images\bank-vrb.svg" />
+    <Content Include="Content\Zalo\images\bank-vtb.svg" />
+    <Content Include="Content\Zalo\images\check-mark.svg" />
+    <Content Include="Content\Zalo\images\logo-zalopay.svg" />
+    <Content Include="Content\Zalo\js\bootstrap.min.js" />
+    <Content Include="Content\Zalo\js\flat\aero%402x.png" />
+    <Content Include="Content\Zalo\js\flat\aero.css" />
+    <Content Include="Content\Zalo\js\flat\aero.png" />
+    <Content Include="Content\Zalo\js\flat\blue%402x.png" />
+    <Content Include="Content\Zalo\js\flat\blue.css" />
+    <Content Include="Content\Zalo\js\flat\blue.png" />
+    <Content Include="Content\Zalo\js\flat\flat%402x.png" />
+    <Content Include="Content\Zalo\js\flat\flat.css" />
+    <Content Include="Content\Zalo\js\flat\flat.png" />
+    <Content Include="Content\Zalo\js\flat\green%402x.png" />
+    <Content Include="Content\Zalo\js\flat\green.css" />
+    <Content Include="Content\Zalo\js\flat\green.png" />
+    <Content Include="Content\Zalo\js\flat\grey%402x.png" />
+    <Content Include="Content\Zalo\js\flat\grey.css" />
+    <Content Include="Content\Zalo\js\flat\grey.png" />
+    <Content Include="Content\Zalo\js\flat\orange%402x.png" />
+    <Content Include="Content\Zalo\js\flat\orange.css" />
+    <Content Include="Content\Zalo\js\flat\orange.png" />
+    <Content Include="Content\Zalo\js\flat\pink%402x.png" />
+    <Content Include="Content\Zalo\js\flat\pink.css" />
+    <Content Include="Content\Zalo\js\flat\pink.png" />
+    <Content Include="Content\Zalo\js\flat\purple%402x.png" />
+    <Content Include="Content\Zalo\js\flat\purple.css" />
+    <Content Include="Content\Zalo\js\flat\purple.png" />
+    <Content Include="Content\Zalo\js\flat\red%402x.png" />
+    <Content Include="Content\Zalo\js\flat\red.css" />
+    <Content Include="Content\Zalo\js\flat\red.png" />
+    <Content Include="Content\Zalo\js\flat\yellow%402x.png" />
+    <Content Include="Content\Zalo\js\flat\yellow.css" />
+    <Content Include="Content\Zalo\js\flat\yellow.png" />
+    <Content Include="Content\Zalo\js\flat\_all.css" />
+    <Content Include="Content\Zalo\js\icheck.min.js" />
+    <Content Include="Content\Zalo\js\jquery.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -4484,6 +4589,7 @@
     <Content Include="Views\Ve\Details.cshtml" />
     <Content Include="Views\Ve\Create.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

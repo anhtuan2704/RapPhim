@@ -30,13 +30,13 @@ namespace RapChieuPhim.Controllers
 
             return View();
         }
-        public ActionResult Create(string username, string email, string showtimes,string chair,string cinema,string numberchair)
+        public ActionResult Create(string username, string email, string showtimes,string chair,string cinema,string numberchair,string payment)
         {
             int idLC = Int32.Parse(showtimes);
             int idRap = Int32.Parse(cinema);
             int idGe = Int32.Parse(chair);
             int soluong = Int32.Parse(numberchair);
-
+             Session.Add("IDG",idGe);
             var phims = (PhimViewModel)Session["PHIM"];
             var user = (TaiKhoan)Session["USERSESSIO"];
             var rapphim = new RapPhimDao().GetRapPhimFindByID(idRap);
@@ -64,11 +64,11 @@ namespace RapChieuPhim.Controllers
             ViewData["lichChieu"] = lichChieu;
             ViewData["Ghe"] = ghe;
             ViewData["RAP"] = rapphim;
+            var url = "/Payment/SendOrder?order="+ve.Id;
+            return Redirect(url);
 
+            
 
-
-
-            return View();
         }
     }
 }
